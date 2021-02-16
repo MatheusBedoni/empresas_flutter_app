@@ -34,6 +34,14 @@ class DecorationConstants{
               LayoutConstants.backgroundImage)
       )
   );
+  static final BoxDecoration decorationHome = BoxDecoration(
+
+      image: DecorationImage(
+          fit: BoxFit.fill,
+          image: AssetImage(
+              LayoutConstants.backgroundImage)
+      )
+  );
   static final BoxDecoration decorationTextField = BoxDecoration(
 
     borderRadius: BorderRadius.all(

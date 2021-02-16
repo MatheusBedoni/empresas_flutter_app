@@ -1,20 +1,22 @@
 
 import 'package:empresas_app/data/s_api.dart';
+import 'package:empresas_app/view/screens/s_home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginView {
   String validEmail(String value){}
   String validPass(String value){}
-  String login(){}
+  Future<int> login() async{}
 }
-class LoginPresenter implements LoginView{
+class LoginController implements LoginView{
   Api api;
   GlobalKey<FormState> key = new GlobalKey();
   final ctrlEmail = new TextEditingController();
   final ctrlPass = new TextEditingController();
 
 
-  LoginPresenter(){
+  LoginController(){
     api = Api();
   }
 
@@ -42,9 +44,12 @@ class LoginPresenter implements LoginView{
   }
 
   @override
-  String login() {
+  Future<int> login() async {
     if (key.currentState.validate()){
-       api.login(ctrlEmail.text, ctrlPass.text);
+       int status = await api.login(ctrlEmail.text, ctrlPass.text);
+       if(status == 200){
+         Get.to(Home());
+       }
     }
   }
 

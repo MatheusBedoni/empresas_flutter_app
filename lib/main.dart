@@ -27,6 +27,7 @@ class _SplashPageState extends State<Splash> {
   @override
   void initState() {
     super.initState();
+
     new Future.delayed(
         const Duration(milliseconds: 6000),
             () =>

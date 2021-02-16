@@ -1,5 +1,5 @@
-import 'package:empresas_app/presenter/login_presenter.dart';
-import 'package:empresas_app/view/widgets/w_top.dart';
+import 'package:empresas_app/controler/login_controller.dart';
+import 'package:empresas_app/view/widgets/w_top_login.dart';
 import 'package:flutter/material.dart';
 
 import '../v_contansts.dart';
@@ -12,7 +12,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginPageState extends State<Login> {
-  LoginPresenter loginPresenter = new LoginPresenter();
+  LoginController loginController = new LoginController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _LoginPageState extends State<Login> {
 
           color:Colors.white,
           child:Form(
-              key: loginPresenter.key,
+              key: loginController.key,
               child:Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:<Widget> [
@@ -51,8 +51,8 @@ class _LoginPageState extends State<Login> {
                             decoration: DecorationConstants.decorationTextField,
                             child:TextFormField(
 
-                              controller: loginPresenter.ctrlEmail,
-                              validator:loginPresenter.validEmail,
+                              controller: loginController.ctrlEmail,
+                              validator:loginController.validEmail,
                               decoration:  InputDecoration(fillColor: Colors.white),
                               textInputAction: TextInputAction.done,
                             ),
@@ -65,9 +65,9 @@ class _LoginPageState extends State<Login> {
                           Container(
                             decoration: DecorationConstants.decorationTextField,
                             child:TextFormField(
-                              controller: loginPresenter.ctrlPass,
+                              controller: loginController.ctrlPass,
                               obscureText: true,
-                              validator:loginPresenter.validPass,
+                              validator:loginController.validPass,
                               textInputAction: TextInputAction.done,
                               keyboardType: TextInputType.text,
                               decoration:  InputDecoration(fillColor: Colors.white),
@@ -82,7 +82,7 @@ class _LoginPageState extends State<Login> {
                             minWidth: MediaQuery.of(context).size.width,
                             child: RaisedButton(
                               onPressed: () => {
-                                loginPresenter.login()
+                                loginController.login()
                               },
                               shape: new RoundedRectangleBorder(borderRadius:
                               new BorderRadius.circular(8.0)),
