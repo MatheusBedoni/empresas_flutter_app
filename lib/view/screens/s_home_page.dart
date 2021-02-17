@@ -1,7 +1,8 @@
+import 'package:empresas_app/controler/enterprises_controller.dart';
 import 'package:empresas_app/controler/home_controller.dart';
-import 'package:empresas_app/controler/login_controller.dart';
 import 'package:empresas_app/view/widgets/w_top_home.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../v_contansts.dart';
 
@@ -22,8 +23,25 @@ class _HomePageState extends State<Home> {
    homeController.getEnterprises();
   }
 
+  ListenerController() {
+    homeController.ctrlSearch.addListener(() {
+      if (homeController.ctrlSearch.text.isEmpty) {
+        setState(() {
+          homeController.isSearch = false;
+          homeController.searchText = "";
+        });
+      } else {
+        setState(() {
+          homeController.isSearch = true;
+          homeController.searchText = homeController.ctrlSearch.text;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    ListenerController();
 
     return Scaffold(
 
@@ -45,21 +63,39 @@ class _HomePageState extends State<Home> {
                     top:MediaQuery
                         .of(context)
                         .size
-                        .height  / 5.6,
+                        .height  / 10.3,
                     left: 10,
                     right: 10,
                     child:Container(
-                      margin:  EdgeInsets.all(15.0),
+                      padding:  EdgeInsets.all(15.0),
                       decoration: DecorationConstants.decorationTextField,
                       child:TextField(
                         controller: homeController.ctrlSearch,
-                        decoration:  InputDecoration(fillColor: Colors.white),
+                        decoration:  InputDecoration(fillColor: Colors.white,
+                            hintText: 'Procure por uma empresa',
+                            icon:  IconButton(
+                              icon: Icon(Icons.search),
+                              color: Colors.grey,
+                              onPressed: (){  print('');
+                              },
+                            ),),
+
                       ),
                     ),
                   ),
-
-
-
+                  homeController.isSearch != false ?
+                  Positioned(
+                    top:MediaQuery
+                        .of(context)
+                        .size
+                        .height  / 5.6,
+                    left: 10,
+                    right: 10,
+                    child:GetBuilder<EnterprisesController>(
+                      builder: (_) =>
+                          homeController.searchListView(),
+                    ),
+                  ):Container()
 
                 ],
               );

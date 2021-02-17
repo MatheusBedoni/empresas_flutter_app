@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:get_storage/get_storage.dart';
 
-import 'constants/c_api_url.dart';
+import '../constants/c_api_url.dart';
 import 'package:http/http.dart' as http;
 
-import 'models/enterprise.dart';
+import '../models/enterprise.dart';
 
 abstract class ApiService {
   Future<int> login(String email, String pass);
@@ -26,7 +26,7 @@ class Api  implements ApiService{
       "uid": box.read('uid'),
     };
 
-    final url = "${ApiUrls.API}/${ApiUrls.VERSION}/${ApiUrls.ROUTE_GET_ENTERPRISE}";
+    final url = "${ApiUrls.BASE_URL}/${ApiUrls.API}/${ApiUrls.VERSION}/${ApiUrls.ROUTE_GET_ENTERPRISE}";
     final response = await http.get(url, headers: headers);
 
     if (response.statusCode == 200) {
@@ -45,7 +45,7 @@ class Api  implements ApiService{
       "email": email,
       "password": pass
     };
-    final url = "${ApiUrls.API}/${ApiUrls.VERSION}/${ApiUrls.ROUTE_LOGIN}";
+    final url = "${ApiUrls.BASE_URL}/${ApiUrls.API}/${ApiUrls.VERSION}/${ApiUrls.ROUTE_LOGIN}";
     final response = await http.post(url, body: body);
 
     if(response.statusCode == 200){
@@ -55,5 +55,8 @@ class Api  implements ApiService{
       return response.statusCode;
     }
   }
+
+
+
 
 }

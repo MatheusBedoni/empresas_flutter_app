@@ -1,5 +1,5 @@
 
-import 'package:empresas_app/data/s_api.dart';
+import 'package:empresas_app/data/service/s_api.dart';
 import 'package:empresas_app/view/screens/s_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

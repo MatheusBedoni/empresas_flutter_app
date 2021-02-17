@@ -9,13 +9,10 @@ class Wtop extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return  Container(
-      height: maxHeight <= 540 ? MediaQuery
+      height:  MediaQuery
           .of(context)
           .size
-          .height  / 5.5: MediaQuery
-          .of(context)
-          .size
-          .height  / 4.5,
+          .height  / 6.5,
       width: MediaQuery
           .of(context)
           .size

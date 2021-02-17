@@ -2,66 +2,21 @@
 import 'package:empresas_app/data/models/enterprise.dart';
 import 'package:flutter/material.dart';
 
-class WempresasList extends StatelessWidget{
-  final int index;
-  final Enterprise enterprise;
+import 'w_empresas.dart';
 
-  WempresasList({this.index,this.enterprise});
+class WempresasList extends StatelessWidget{
+  final List<Enterprise> listEnterprise;
+
+  WempresasList({this.listEnterprise});
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
-        onTap: (){
-
-
-        },
-        child:Stack(
-          children:<Widget> [
-            Center(
-              child:Container(
-                  height:  MediaQuery
-                      .of(context)
-                      .size
-                      .height /7,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width /1.1,
-
-                  decoration: BoxDecoration(
-                    border: Border.all (width: 5, color:Colors.white),
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(20)
-                    ),
-                    color:Colors.orange,
-                  ),
-              ),
-            ),
-
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery
-                      .of(context)
-                      .size
-                      .height /15,
-                ),
-                child:Text(enterprise.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color:  Color(0xFFfff9f9),
-                    fontSize:  MediaQuery.of(context).size.height/65,
-                  ),
-                ),
-              ),
-            ),
-
-
-
-
-          ],
-        )
-
+    return  Container(
+      child: new ListView.builder(
+          shrinkWrap: true,
+          itemCount:listEnterprise.length,
+          itemBuilder: (BuildContext context, int index) {
+            return new Wempresas(index: index,enterprise:listEnterprise[index] );
+          }),
     )
     ;
 
